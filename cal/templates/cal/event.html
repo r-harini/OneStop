@@ -1,0 +1,39 @@
+{% extends 'cal/base.html' %}
+
+{% block title %}
+Event
+{% endblock %}
+
+{% block content %}
+<div class="center-column">
+<center>
+<div class="clearfix">
+    <a class="btn btn-info left" href="{% url 'cal:index'%}"> Calendar</a>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    {% if instance.id %}
+      <h3> Update Event </h3>
+    {% else %}
+      <h3> New Event </h3>
+    {% endif %}
+    <br>
+    <table class="form form-table">
+      {{ form }}
+      
+      <tr><td> &nbsp;</td></tr>
+      <tr>
+        <td>
+        {% if instance.id %}
+        <a class="btn btn-info right" href="{% url 'cal:event_delete' instance.id %}">Delete Event</a>
+        {% endif %}
+        </td>
+        <td colspan="2"><button type="submit" class="btn btn-info right"> Submit </button></td>
+      </tr>
+      
+    </table>
+  </form>
+</center>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'weather/base.html' %}
+
+{% block content %}
+
+<div class="center-column">
+    <center>
+        <h3> Weather </h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.name }}
+            <button class="btn btn-info">
+                Add City
+            </button>
+        </form>
+        <table>
+            {% for weather in weather_data %}
+                <tr><td>
+                    <figure class="image is-50x50">
+                        <img src="http://openweathermap.org/img/w/10d.png" alt="Image">
+                    </figure>
+                    <div class="content">
+                        <p>
+                            <span class="title">{{ weather.city }}</span>
+                            <br>
+                            <span class="subtitle">{{ weather.temperature }}° F</span>
+                            <br> {{ weather.description }}
+                        </p>
+                    </div>
+                </td></tr>
+            {% endfor %}
+        </table>
+    </center>
+</div>
+{% endblock %}

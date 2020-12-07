@@ -1,0 +1,13 @@
+{% extends 'cal/base.html' %}
+
+{% block content %}
+<center>
+<p>Are you sure you want to delete "{{ instance.title }}" ?</p>
+
+<form method="POST" >
+    {% csrf_token %}
+    <a class="btn btn-info" href="{% url 'cal:index' %}"> Cancel</a> 
+    <input class="btn btn-info" type="submit" name="Confirm" value="Confirm">
+</form>
+</center>
+{% endblock %}
